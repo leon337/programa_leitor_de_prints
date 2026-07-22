@@ -31,9 +31,13 @@ Status: Em andamento
 - [x] Implementar filtro configurável por confiança.
 - [x] Implementar separação espacial de linhas, colunas e blocos.
 - [x] Implementar indicador de qualidade geral.
-- [ ] Retestar com a imagem do primeiro diagnóstico.
-- [ ] Testar imagens claras, escuras e com textos pequenos.
-- [ ] Aprovar o comportamento do OCR.
+- [x] Retestar com a mesma imagem do primeiro diagnóstico.
+- [x] Aprovar o resultado do reteste da mesma imagem.
+- [ ] Testar uma imagem clara e simples.
+- [ ] Testar uma imagem com texto pequeno.
+- [ ] Testar uma imagem com tabela, formulário ou estrutura diferente.
+- [ ] Consolidar a comparação da matriz de testes.
+- [ ] Aprovar o comportamento geral do OCR.
 
 ## Fase 3 — Estruturação
 
@@ -44,7 +48,14 @@ Status: Iniciada parcialmente
 - [x] Identificar títulos, cabeçalhos, colunas e blocos por posição.
 - [x] Registrar coordenadas percentuais dos blocos.
 - [x] Identificar campos simples no formato chave e valor.
-- [ ] Validar a estrutura espacial no reteste.
+- [ ] Validar a estrutura espacial na matriz complementar.
+- [ ] Reconstruir títulos divididos em múltiplas linhas.
+- [ ] Corrigir a ordem de leitura dos blocos.
+- [ ] Impedir linhas que atravessem duas colunas.
+- [ ] Tratar elementos próximos à divisão central.
+- [ ] Classificar título, descrição, etapa, lista, botão e selo.
+- [ ] Separar qualidade técnica e qualidade semântica.
+- [ ] Preencher `campos_detectados` de forma útil.
 - [ ] Normalizar datas e números.
 - [ ] Identificar tabelas quando possível.
 - [ ] Produzir JSON estruturado final.
