@@ -10,7 +10,7 @@
 
 ## Objetivo atual
 
-Executar a matriz complementar de testes do OCR e, após a coleta dos resultados, preparar a correção do normalizador espacial e semântico.
+Concluir os testes complementares do OCR com uma imagem clara e uma imagem contendo tabela, formulário ou estrutura diferente. Depois, consolidar a matriz de resultados e preparar a correção do normalizador espacial e semântico.
 
 ## Diagnóstico inicial
 
@@ -53,7 +53,54 @@ O reteste foi executado com recorte, pré-processamento equilibrado, organizaç�
 
 O usuário aprovou formalmente o resultado deste reteste como validação da mesma imagem. Essa aprovação não conclui a Fase 2 nem a LEA-100.
 
-## Correções implementadas
+## Teste complementar — texto pequeno reprovado
+
+O teste foi executado com uma captura da plataforma Olymptrade contendo menus, ativos, gráfico, escala de preços, painel de negociação, botões e textos pequenos distribuídos em várias regiões.
+
+### Configuração utilizada
+
+- Arquivo: `Captura de tela_2026-07-22_00-54-52.png`.
+- Recorte superior: 13%.
+- Recorte direito: 0%.
+- Recorte inferior: 7%.
+- Recorte esquerdo: 0%.
+- Pré-processamento: equilibrado.
+- Organização espacial solicitada: duas colunas.
+- Confiança mínima por palavra: 40%.
+- Inversão automática: habilitada; a imagem clara não foi invertida.
+
+### Resultado técnico apresentado pelo aplicativo
+
+- Confiança global do OCR: 90%.
+- Qualidade geral calculada: 92,4%.
+- Confiança média das palavras mantidas: 89,8%.
+- Palavras mantidas: 5.
+- Itens descartados: 3.
+- Total de itens informado: 8.
+- Colunas detectadas: 1.
+- Texto filtrado reconhecido: `D 6.143,17`, `Conta demo` e `70.6803`.
+- Campos detectados: vazio.
+
+### Diagnóstico aprovado
+
+- Execução do mecanismo OCR: `PASS`.
+- Reconhecimento de texto pequeno: `FAIL`.
+- Cobertura do conteúdo visível: `FAIL`.
+- Organização espacial: `FAIL`.
+- Estruturação semântica: `FAIL`.
+- Resultado geral do teste: `REPROVADO`.
+
+A qualidade calculada de 92,4% foi considerada superestimada, pois a maior parte do conteúdo visível não foi reconhecida. Também foram registradas as seguintes inconsistências:
+
+- `retainedWords: 5`, `totalTokens: 8` e `retainedWordRatio: 1` não representam uma proporção coerente;
+- o modo solicitado foi `two-columns`, mas apenas uma coluna foi detectada;
+- saldo e preço foram classificados como títulos;
+- `campos_detectados` permaneceu vazio;
+- a métrica atual avalia confiança dos poucos textos reconhecidos, mas não mede cobertura real da imagem.
+
+O usuário aprovou formalmente este diagnóstico como reprovado e não autorizou alterações no código nesta etapa.
+
+## Correções implementadas anteriormente
 
 - Recorte local por margens superior, direita, inferior e esquerda.
 - Presets para tela inteira e conteúdo central.
@@ -92,37 +139,42 @@ O usuário aprovou formalmente o resultado deste reteste como validação da mes
 - TypeScript: aprovado.
 - Ambiente: preview isolado, sem promoção para produção.
 
-## Testes complementares autorizados
+## Matriz complementar
 
-- Imagem clara e simples.
-- Imagem com texto pequeno.
-- Imagem com tabela, formulário ou outra estrutura diferente.
+- Reteste da mesma imagem: aprovado.
+- Imagem com texto pequeno: executado e reprovado.
+- Imagem clara e simples: pendente.
+- Imagem com tabela, formulário ou outra estrutura diferente: pendente.
+- Consolidação única dos resultados: pendente.
 
-Os testes ainda não foram executados porque as três imagens representativas não foram fornecidas nesta etapa.
+## Normalizador — correções preparadas para avaliação posterior
 
-## Normalizador — correções preparadas para a próxima execução
-
-Após os testes complementares, avaliar e corrigir:
+Após a conclusão dos testes restantes, avaliar e corrigir:
 
 - reconstrução de títulos quebrados;
 - ordem de leitura vertical e horizontal;
 - linhas que atravessam duas colunas;
 - elementos próximos à divisão central;
-- classificação de título, descrição, etapa, lista, botão e selo;
-- qualidade técnica separada da qualidade semântica;
+- segmentação da imagem em regiões independentes;
+- ampliação e OCR de cada região em múltiplas passagens;
+- recomposição dos resultados por coordenadas;
+- classificação de título, descrição, etapa, lista, botão, selo e campos de interface;
+- qualidade técnica separada da qualidade semântica e da cobertura;
+- correção da fórmula de proporção de palavras mantidas;
 - preenchimento de `campos_detectados`;
 - normalização posterior de datas, números e tabelas.
 
 ## Restrições preservadas
 
+- Não alterar o código antes da conclusão dos testes autorizados.
 - Não promover o OCR para produção.
 - Não configurar Supabase.
 - Não concluir a LEA-100.
 
 ## Bloqueios
 
-Nenhum bloqueio estrutural. A execução da matriz complementar depende do fornecimento das imagens de teste. A aprovação funcional completa permanece bloqueada até esses testes e a revisão do normalizador.
+Nenhum bloqueio estrutural. A conclusão da matriz depende do fornecimento e processamento de uma imagem clara e simples e de uma imagem com tabela, formulário ou estrutura diferente. A aprovação geral continua bloqueada até a consolidação dos testes e a futura revisão do normalizador.
 
 ## Próxima etapa
 
-Receber as três imagens representativas, executar os testes complementares no preview e registrar uma comparação única antes de alterar o normalizador.
+Receber e testar uma imagem clara e simples e uma imagem com tabela, formulário ou estrutura diferente. Depois, registrar uma comparação única da matriz antes de qualquer alteração no código.
