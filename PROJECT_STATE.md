@@ -10,19 +10,39 @@
 
 ## Objetivo atual
 
-Validar a fundação do MVP e iniciar a extração OCR local de imagens PNG/JPG no navegador.
+Melhorar a precisão do OCR local com recorte, pré-processamento, filtragem por confiança e organização espacial antes da aprovação funcional.
 
-## Concluído nesta etapa
+## Diagnóstico aprovado
 
-- `npm run lint` executado com sucesso no build da Vercel.
-- Build Next.js e validação TypeScript concluídos com sucesso.
-- Tesseract.js 7 integrado ao frontend.
-- OCR configurado para português e inglês.
-- Progresso e estado do processamento exibidos na interface.
-- Texto bruto e nível de confiança exibidos após a leitura.
-- Estrutura preliminar em JSON gerada com arquivo, texto, linhas e confiança.
-- Tratamento inicial de erro e imagem sem texto implementado.
-- Workflow de CI criado para executar lint e build em alterações futuras.
+O primeiro teste funcional com uma imagem real foi aprovado como diagnóstico, não como aprovação final do OCR.
+
+- Execução do OCR: `PASS`.
+- Texto bruto, confiança e JSON preliminar: `PASS`.
+- Precisão geral: `PARCIAL`.
+- Separação de colunas: `FAIL`.
+- Remoção de ruído externo: `FAIL`.
+- Estruturação semântica: ainda não implementada naquele teste.
+- Confiança média observada: aproximadamente 75%.
+
+Foram identificados leitura indevida de navegador e sistema, erros em acentos, mistura entre colunas, símbolos tratados como texto e ausência de estrutura semântica real.
+
+## Correções implementadas
+
+- Recorte local por margens superior, direita, inferior e esquerda.
+- Presets para tela inteira e conteúdo central.
+- Ampliação da imagem antes do OCR.
+- Conversão para escala de cinza e aumento de contraste.
+- Redução leve de ruído.
+- Inversão automática para imagens com fundo escuro.
+- Modo de alto contraste com limiarização automática.
+- Filtro configurável por confiança mínima das palavras.
+- Remoção de tokens sem conteúdo alfanumérico significativo.
+- Uso das posições retornadas pelo OCR para organizar linhas, colunas e blocos.
+- Modos automático, uma coluna e duas colunas.
+- Separação entre texto bruto, texto filtrado e dados estruturados.
+- Indicador de qualidade geral com palavras mantidas, itens descartados e confiança média.
+- Dados estruturados com títulos, cabeçalho, colunas, blocos, campos e coordenadas percentuais.
+- Prévia comparativa entre imagem original e imagem pré-processada.
 - A imagem permanece local no navegador e não é persistida.
 
 ## Infraestrutura
@@ -32,30 +52,39 @@ Validar a fundação do MVP e iniciar a extração OCR local de imagens PNG/JPG 
 - URL: `https://programa-leitor-de-prints.vercel.app`
 - Deployment: `dpl_7TUVwu6GdSvSsg8MSF6wtFwfQcTn`
 - Conteúdo: fundação anterior, sem OCR.
+- Situação: não alterada.
 
-### Preview com OCR
+### Preview anterior do OCR
 
 - URL: `https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app`
 - Deployment: `dpl_E9ddHmDoaNVB8GwEj3R79y5ojvsj`
+
+### Novo preview para reteste
+
+- URL: `https://programa-leitor-de-prints-opzna7eml-predix-ai-br.vercel.app`
+- Deployment: `dpl_pSPq8Sv6n4ZC6QcBjt8qFLHKwEhj`
 - Estado: `READY`
 - Resposta HTTP: `200`
-- Lint: aprovado
-- Build: aprovado
-- TypeScript: aprovado
+- Lint: aprovado.
+- Build Next.js: aprovado.
+- TypeScript: aprovado.
+- Ambiente: preview isolado, sem promoção para produção.
 
 ## Pendente
 
-- Executar teste funcional do OCR no navegador com imagens reais.
-- Avaliar precisão em prints claros, escuros e com textos pequenos.
-- Criar normalizador de campos, datas, números e tabelas.
+- Repetir o teste com a mesma imagem usada no diagnóstico.
+- Comparar texto bruto, texto filtrado, colunas, blocos e qualidade geral.
+- Testar imagens claras, escuras e com textos pequenos.
+- Ajustar os limiares conforme os resultados do reteste.
+- Aprovar ou reprovar o comportamento do OCR.
+- Continuar a normalização de datas, números e tabelas após a aprovação da precisão.
 - Criar editor e exportação JSON.
-- Promover a versão OCR para produção somente após aprovação.
 - Preparar Supabase somente após autorização explícita.
 
 ## Bloqueios
 
-Nenhum bloqueio estrutural. A precisão do OCR depende da qualidade da imagem e ainda precisa de validação funcional humana.
+Nenhum bloqueio estrutural. A aprovação funcional continua bloqueada até o reteste humano confirmar melhoria suficiente na precisão e na organização espacial.
 
 ## Próxima etapa
 
-Testar o preview OCR com prints reais e, após aprovação, iniciar o normalizador de dados dentro da LEA-100.
+Executar o reteste no novo preview com a mesma imagem do primeiro diagnóstico e registrar a comparação antes de avançar.
