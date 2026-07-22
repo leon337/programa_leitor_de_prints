@@ -56,12 +56,35 @@
 - Ordem de leitura, fronteira entre colunas e estrutura semântica permanecem parciais.
 - Resultado aprovado formalmente pelo usuário sem concluir a Fase 2 ou a LEA-100.
 
+#### Teste de texto pequeno — reprovado
+
+- Imagem utilizada: captura de interface da Olymptrade com menus, ativos, gráfico, escala de preços, painel de negociação, botões e textos pequenos.
+- Configuração: recorte 13% superior, 0% direito, 7% inferior e 0% esquerdo.
+- Pré-processamento: equilibrado.
+- Organização espacial solicitada: duas colunas.
+- Confiança mínima por palavra: 40%.
+- Confiança global informada: 90%.
+- Qualidade geral calculada: 92,4%.
+- Confiança média das palavras mantidas: 89,8%.
+- Palavras mantidas: 5.
+- Itens descartados: 3.
+- Conteúdo reconhecido: `D 6.143,17`, `Conta demo` e `70.6803`.
+- A maior parte dos textos, botões, valores, ativos e informações do gráfico não foi reconhecida.
+- Cobertura do conteúdo, organização espacial e estruturação semântica foram reprovadas.
+- A qualidade de 92,4% foi considerada superestimada por não medir a cobertura real da imagem.
+- Foi registrada inconsistência entre `retainedWords: 5`, `totalTokens: 8` e `retainedWordRatio: 1`.
+- O modo solicitado foi de duas colunas, mas apenas uma coluna foi detectada.
+- Saldo e preço foram classificados incorretamente como títulos.
+- `campos_detectados` permaneceu vazio.
+- Diagnóstico aprovado formalmente pelo usuário como `REPROVADO`.
+- Nenhuma alteração de código foi autorizada após este teste.
+
 #### Matriz complementar autorizada
 
-- Teste com imagem clara e simples.
-- Teste com texto pequeno.
-- Teste com tabela, formulário ou estrutura diferente.
-- Preparação da correção do normalizador após a consolidação dos testes.
+- Teste com imagem clara e simples: pendente.
+- Teste com texto pequeno: executado e reprovado.
+- Teste com tabela, formulário ou estrutura diferente: pendente.
+- Preparação da correção do normalizador somente após a consolidação dos testes.
 
 ### Versão 0.2.0 — Integração OCR inicial
 
@@ -90,9 +113,10 @@
 
 ### Pendente
 
-- Receber as três imagens representativas da matriz complementar.
-- Executar e consolidar os testes complementares.
-- Corrigir o normalizador espacial e semântico após os testes.
+- Executar o teste com imagem clara e simples.
+- Executar o teste com tabela, formulário ou estrutura diferente.
+- Consolidar a matriz complementar.
+- Corrigir o normalizador espacial, semântico e as métricas somente após os testes.
 - Aprovar o comportamento geral do OCR.
 - Normalizar datas, números e tabelas.
 - Implementar exportação JSON.
