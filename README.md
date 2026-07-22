@@ -1,6 +1,17 @@
 # Laboratório 01 — Leitor Estruturado de Prints
 
-Aplicação para receber uma captura de tela, extrair o conteúdo visível e transformar as informações em dados estruturados.
+Aplicação para receber uma captura de tela, extrair o conteúdo visível e transformar as informações em dados estruturados revisáveis.
+
+## Estado atual
+
+- Item em andamento: `LEA-100`
+- Fase: fundação do MVP
+- Interface de upload: criada
+- Validação PNG/JPG: criada
+- Pré-visualização local: criada
+- OCR: pendente
+- Supabase: não configurado
+- Vercel: não configurada
 
 ## Objetivo do MVP
 
@@ -8,7 +19,7 @@ Aplicação para receber uma captura de tela, extrair o conteúdo visível e tra
 2. Extrair textos da imagem com OCR.
 3. Identificar blocos como títulos, campos, valores, datas, listas e tabelas.
 4. Exibir o texto original e o resultado estruturado.
-5. Permitir exportação em JSON.
+5. Permitir revisão e exportação em JSON.
 
 ## Fluxo
 
@@ -29,10 +40,26 @@ Revisão pelo usuário
 ## Arquitetura inicial
 
 - Frontend: Next.js + TypeScript
-- Hospedagem: Vercel
-- Banco e armazenamento: Supabase
-- OCR inicial: Tesseract.js ou serviço externo configurável
+- Hospedagem futura: Vercel
+- Banco e armazenamento futuros: Supabase
+- OCR inicial: mecanismo configurável
 - Estruturação: regras locais no MVP; IA como evolução
+
+## Executar localmente
+
+Requisito: Node.js 20.9 ou superior.
+
+```bash
+npm install
+npm run dev
+```
+
+Validações:
+
+```bash
+npm run lint
+npm run build
+```
 
 ## Entidade principal
 
@@ -47,12 +74,18 @@ Revisão pelo usuário
 }
 ```
 
-## Limites do MVP
+## Privacidade
 
-- Não garantir leitura perfeita de imagens borradas ou cortadas.
-- Não interpretar automaticamente qualquer tipo de documento com precisão total.
-- Não armazenar imagens sem autorização explícita do usuário.
+- A fundação atual processa apenas a seleção e a pré-visualização local.
+- A imagem não é enviada nem armazenada.
+- Persistência exige autorização explícita.
 
-## Estado
+## Documentação
 
-Planejamento inicial.
+- [Estado do projeto](PROJECT_STATE.md)
+- [Roadmap](ROADMAP.md)
+- [Constituição](docs/CONSTITUICAO_DO_PROJETO.md)
+- [Decisões](docs/DECISOES.md)
+- [Procedimentos](docs/SKILLS.md)
+- [Manual operacional](docs/MANUAL_DO_PROJETO.md)
+- [Changelog](CHANGELOG.md)
