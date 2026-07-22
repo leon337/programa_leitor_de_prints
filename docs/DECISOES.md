@@ -20,9 +20,9 @@ A imagem selecionada permanece local no navegador durante a fundação do MVP. N
 
 ## DEC-004 — Infraestrutura externa
 
-Status: Aprovada
+Status: Aprovada e atualizada
 
-Supabase e Vercel não serão configurados nesta etapa. A ativação de banco, armazenamento ou deploy exige autorização específica.
+A Vercel foi autorizada explicitamente em 2026-07-21 e ativada para validar e publicar a fundação do projeto. O Supabase permanece não configurado e continua exigindo autorização específica.
 
 ## DEC-005 — Fluxo operacional
 
