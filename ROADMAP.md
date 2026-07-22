@@ -9,7 +9,9 @@ Status: Em andamento
 - [x] Criar estrutura Next.js com TypeScript.
 - [x] Criar interface de upload e pré-visualização.
 - [x] Validar PNG/JPG e limite de tamanho.
-- [ ] Validar instalação, lint e build.
+- [x] Validar instalação das dependências na Vercel.
+- [x] Validar TypeScript e build de produção na Vercel.
+- [ ] Executar `npm run lint` separadamente.
 
 ## Fase 2 — Extração OCR
 
@@ -33,6 +35,8 @@ Status: Em andamento
 
 ## Fase 5 — Publicação
 
-- [ ] Criar preview na Vercel após autorização explícita.
-- [ ] Executar testes de aceitação.
-- [ ] Preparar versão demonstrável do MVP.
+- [x] Autorizar e criar o projeto na Vercel.
+- [x] Publicar a fundação e obter estado `READY`.
+- [x] Verificar a aplicação publicada com HTTP 200.
+- [ ] Executar testes de aceitação completos.
+- [ ] Preparar versão demonstrável do MVP com OCR.
