@@ -8,53 +8,83 @@ Aplicação para receber uma captura de tela, extrair o conteúdo visível e tra
 
 - URL: https://programa-leitor-de-prints.vercel.app
 - Versão: fundação anterior, sem OCR
+- Situação: não alterada
 
-### Preview da integração OCR
+### Preview atual para reteste
 
-- URL: https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app
+- URL: https://programa-leitor-de-prints-opzna7eml-predix-ai-br.vercel.app
+- Versão: `0.3.0`
 - Estado: `READY`
 - Lint: aprovado
 - TypeScript: aprovado
 - Build: aprovado
 - Resposta HTTP: `200`
 
+### Preview anterior
+
+- URL: https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app
+- Versão: OCR inicial, sem as correções de precisão
+
 ## Estado atual
 
 - Item em andamento: `LEA-100`
-- Fase: extração OCR
+- Fase: melhoria e validação da extração OCR
 - Upload e pré-visualização: implementados
 - Validação PNG/JPG e 10 MB: implementada
-- OCR local: integrado com Tesseract.js 7
-- Idiomas: português e inglês
-- Texto bruto: exibido e editável
-- Confiança: exibida quando disponível
-- JSON preliminar: arquivo, texto, linhas e confiança
+- OCR local: Tesseract.js 7 em português e inglês
+- Recorte da área útil: implementado
+- Ampliação, contraste e redução de ruído: implementados
+- Inversão para fundos escuros: implementada
+- Filtro por confiança: implementado
+- Separação espacial: linhas, colunas e blocos
+- Texto bruto e texto filtrado: separados
+- Indicador de qualidade geral: implementado
+- JSON: títulos, cabeçalho, colunas, blocos, campos e coordenadas
 - Supabase: não configurado
-- Promoção para produção: pendente de teste e aprovação
+- Promoção para produção: não autorizada
+- Aprovação final do OCR: pendente de reteste
 
 ## Fluxo atual
 
 ```text
 Upload da imagem
     ↓
-Validação local
+Recorte da área útil
     ↓
-OCR no navegador
+Ampliação + contraste + redução de ruído
     ↓
-Texto bruto + confiança
+OCR local no navegador
     ↓
-JSON preliminar
+Filtro por confiança e conteúdo significativo
     ↓
-Revisão do usuário
+Separação espacial de linhas, colunas e blocos
+    ↓
+Texto bruto + texto filtrado + qualidade
+    ↓
+JSON estruturado revisável
 ```
 
-## Arquitetura inicial
+## Como executar o reteste
+
+1. Abra o preview atual.
+2. Selecione a mesma imagem usada no primeiro diagnóstico.
+3. Use `Conteúdo central` para excluir parte das barras externas ou ajuste as quatro margens manualmente.
+4. Clique em `Atualizar prévia` e confirme visualmente o recorte.
+5. Comece com pré-processamento `Equilibrado`.
+6. Use organização `Duas colunas` para a imagem de teste anterior ou compare com o modo automático.
+7. Mantenha a confiança mínima em `45%` no primeiro reteste.
+8. Clique em `Analisar print`.
+9. Compare texto bruto, texto filtrado, qualidade, colunas, blocos e JSON.
+
+## Arquitetura
 
 - Frontend: Next.js + React + TypeScript
 - OCR: Tesseract.js executado no navegador
+- Pré-processamento: Canvas API no navegador
+- Estruturação espacial: TSV do OCR, coordenadas e regras locais
 - Hospedagem: Vercel
-- Banco e armazenamento futuros: Supabase
-- Estruturação: regras locais no MVP; IA como evolução futura
+- Banco e armazenamento futuros: Supabase, somente após autorização
+- Camada de IA: possível evolução futura, fora do estágio atual
 
 ## Executar localmente
 
@@ -74,14 +104,26 @@ npm run build
 
 O comando `npm run build` também executa o lint antes da compilação.
 
-## Estrutura preliminar
+## Exemplo resumido de saída
 
 ```json
 {
   "arquivo": "print.png",
   "texto_bruto": "...",
-  "linhas": ["..."],
-  "confianca": 0.92,
+  "texto_filtrado": "...",
+  "confianca_ocr": 0.86,
+  "qualidade_geral": {
+    "score": 82.4,
+    "label": "média",
+    "palavras_mantidas": 74,
+    "itens_descartados": 11
+  },
+  "dados_estruturados": {
+    "titulos": [],
+    "cabecalho": [],
+    "colunas": [],
+    "campos_detectados": {}
+  },
   "processado_localmente": true
 }
 ```
@@ -89,15 +131,18 @@ O comando `npm run build` também executa o lint antes da compilação.
 ## Privacidade
 
 - A imagem é processada localmente no navegador.
-- O aplicativo não envia nem armazena o print nesta etapa.
+- O recorte e a imagem pré-processada não são enviados ao servidor.
+- O aplicativo não armazena o print nesta etapa.
 - O mecanismo e os arquivos de idioma do OCR podem ser baixados pela Internet na primeira execução.
 - Persistência exige autorização explícita.
 
 ## Limitações atuais
 
-- A precisão depende da nitidez, resolução, contraste e tamanho do texto.
-- O JSON ainda não identifica automaticamente campos, datas, valores ou tabelas.
-- A integração OCR precisa ser testada com imagens reais antes da promoção para produção.
+- A precisão ainda depende da resolução, contraste, tamanho do texto e qualidade do recorte.
+- A separação de colunas e títulos utiliza heurísticas e precisa ser validada no reteste.
+- Datas, números e tabelas ainda não possuem normalização completa.
+- O resultado deve ser revisado por uma pessoa.
+- A versão 0.3.0 não será promovida para produção antes da aprovação explícita.
 
 ## Documentação
 
