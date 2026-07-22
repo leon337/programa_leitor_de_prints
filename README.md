@@ -2,57 +2,59 @@
 
 Aplicação para receber uma captura de tela, extrair o conteúdo visível e transformar as informações em dados estruturados revisáveis.
 
-## Aplicação publicada
+## Ambientes
+
+### Produção
 
 - URL: https://programa-leitor-de-prints.vercel.app
-- Estado do deployment: `READY`
-- Versão atual: fundação do MVP, ainda sem OCR
+- Versão: fundação anterior, sem OCR
+
+### Preview da integração OCR
+
+- URL: https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app
+- Estado: `READY`
+- Lint: aprovado
+- TypeScript: aprovado
+- Build: aprovado
+- Resposta HTTP: `200`
 
 ## Estado atual
 
 - Item em andamento: `LEA-100`
-- Fase: fundação do MVP
-- Interface de upload: criada
-- Validação PNG/JPG: criada
-- Pré-visualização local: criada
-- Build de produção: validado na Vercel
-- TypeScript: validado na Vercel
-- Lint separado: pendente
-- OCR: pendente
+- Fase: extração OCR
+- Upload e pré-visualização: implementados
+- Validação PNG/JPG e 10 MB: implementada
+- OCR local: integrado com Tesseract.js 7
+- Idiomas: português e inglês
+- Texto bruto: exibido e editável
+- Confiança: exibida quando disponível
+- JSON preliminar: arquivo, texto, linhas e confiança
 - Supabase: não configurado
-- Vercel: configurada e publicada
+- Promoção para produção: pendente de teste e aprovação
 
-## Objetivo do MVP
-
-1. Enviar uma imagem em PNG ou JPG.
-2. Extrair textos da imagem com OCR.
-3. Identificar blocos como títulos, campos, valores, datas, listas e tabelas.
-4. Exibir o texto original e o resultado estruturado.
-5. Permitir revisão e exportação em JSON.
-
-## Fluxo
+## Fluxo atual
 
 ```text
 Upload da imagem
     ↓
-Validação e preparação
+Validação local
     ↓
-OCR
+OCR no navegador
     ↓
-Organização semântica
+Texto bruto + confiança
     ↓
-JSON estruturado
+JSON preliminar
     ↓
-Revisão pelo usuário
+Revisão do usuário
 ```
 
 ## Arquitetura inicial
 
-- Frontend: Next.js + TypeScript
+- Frontend: Next.js + React + TypeScript
+- OCR: Tesseract.js executado no navegador
 - Hospedagem: Vercel
 - Banco e armazenamento futuros: Supabase
-- OCR inicial: mecanismo configurável
-- Estruturação: regras locais no MVP; IA como evolução
+- Estruturação: regras locais no MVP; IA como evolução futura
 
 ## Executar localmente
 
@@ -70,24 +72,32 @@ npm run lint
 npm run build
 ```
 
-## Entidade principal
+O comando `npm run build` também executa o lint antes da compilação.
+
+## Estrutura preliminar
 
 ```json
 {
   "arquivo": "print.png",
   "texto_bruto": "...",
-  "blocos": [],
-  "dados_estruturados": {},
-  "confianca": 0.0,
-  "criado_em": "ISO-8601"
+  "linhas": ["..."],
+  "confianca": 0.92,
+  "processado_localmente": true
 }
 ```
 
 ## Privacidade
 
-- A fundação atual processa apenas a seleção e a pré-visualização local.
-- A imagem não é enviada nem armazenada.
+- A imagem é processada localmente no navegador.
+- O aplicativo não envia nem armazena o print nesta etapa.
+- O mecanismo e os arquivos de idioma do OCR podem ser baixados pela Internet na primeira execução.
 - Persistência exige autorização explícita.
+
+## Limitações atuais
+
+- A precisão depende da nitidez, resolução, contraste e tamanho do texto.
+- O JSON ainda não identifica automaticamente campos, datas, valores ou tabelas.
+- A integração OCR precisa ser testada com imagens reais antes da promoção para produção.
 
 ## Documentação
 
