@@ -10,9 +10,9 @@
 
 ## Objetivo atual
 
-Melhorar a precisão do OCR local com recorte, pré-processamento, filtragem por confiança e organização espacial antes da aprovação funcional.
+Executar a matriz complementar de testes do OCR e, após a coleta dos resultados, preparar a correção do normalizador espacial e semântico.
 
-## Diagnóstico aprovado
+## Diagnóstico inicial
 
 O primeiro teste funcional com uma imagem real foi aprovado como diagnóstico, não como aprovação final do OCR.
 
@@ -21,10 +21,37 @@ O primeiro teste funcional com uma imagem real foi aprovado como diagnóstico, n
 - Precisão geral: `PARCIAL`.
 - Separação de colunas: `FAIL`.
 - Remoção de ruído externo: `FAIL`.
-- Estruturação semântica: ainda não implementada naquele teste.
 - Confiança média observada: aproximadamente 75%.
 
-Foram identificados leitura indevida de navegador e sistema, erros em acentos, mistura entre colunas, símbolos tratados como texto e ausência de estrutura semântica real.
+## Reteste da mesma imagem — aprovado
+
+O reteste foi executado com recorte, pré-processamento equilibrado, organização em duas colunas, confiança mínima de 60% e inversão automática.
+
+### Configuração utilizada
+
+- Recorte superior: 10%.
+- Recorte direito: 3%.
+- Recorte inferior: 7%.
+- Recorte esquerdo: 3%.
+- Pré-processamento: equilibrado.
+- Organização espacial: duas colunas.
+- Confiança mínima por palavra: 60%.
+- Inversão automática: ativada.
+
+### Resultados
+
+- Confiança global do OCR: 90%.
+- Confiança média das palavras mantidas: 95,2%.
+- Qualidade geral calculada: 96,2%.
+- Palavras mantidas: 63.
+- Itens descartados: 8.
+- Colunas detectadas: 2.
+- Ruídos do navegador e do sistema: removidos pelo recorte.
+- Reconhecimento do conteúdo principal: aprovado para esta imagem.
+- Separação exata de blocos e ordem de leitura: parcial.
+- Estrutura semântica e campos detectados: ainda incompletos.
+
+O usuário aprovou formalmente o resultado deste reteste como validação da mesma imagem. Essa aprovação não conclui a Fase 2 nem a LEA-100.
 
 ## Correções implementadas
 
@@ -40,10 +67,10 @@ Foram identificados leitura indevida de navegador e sistema, erros em acentos, m
 - Uso das posições retornadas pelo OCR para organizar linhas, colunas e blocos.
 - Modos automático, uma coluna e duas colunas.
 - Separação entre texto bruto, texto filtrado e dados estruturados.
-- Indicador de qualidade geral com palavras mantidas, itens descartados e confiança média.
+- Indicador de qualidade geral.
 - Dados estruturados com títulos, cabeçalho, colunas, blocos, campos e coordenadas percentuais.
 - Prévia comparativa entre imagem original e imagem pré-processada.
-- A imagem permanece local no navegador e não é persistida.
+- Processamento local sem persistência.
 
 ## Infraestrutura
 
@@ -54,37 +81,48 @@ Foram identificados leitura indevida de navegador e sistema, erros em acentos, m
 - Conteúdo: fundação anterior, sem OCR.
 - Situação: não alterada.
 
-### Preview anterior do OCR
-
-- URL: `https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app`
-- Deployment: `dpl_E9ddHmDoaNVB8GwEj3R79y5ojvsj`
-
-### Novo preview para reteste
+### Preview para testes
 
 - URL: `https://programa-leitor-de-prints-opzna7eml-predix-ai-br.vercel.app`
 - Deployment: `dpl_pSPq8Sv6n4ZC6QcBjt8qFLHKwEhj`
-- Estado: `READY`
-- Resposta HTTP: `200`
+- Estado: `READY`.
+- Resposta HTTP: `200`.
 - Lint: aprovado.
 - Build Next.js: aprovado.
 - TypeScript: aprovado.
 - Ambiente: preview isolado, sem promoção para produção.
 
-## Pendente
+## Testes complementares autorizados
 
-- Repetir o teste com a mesma imagem usada no diagnóstico.
-- Comparar texto bruto, texto filtrado, colunas, blocos e qualidade geral.
-- Testar imagens claras, escuras e com textos pequenos.
-- Ajustar os limiares conforme os resultados do reteste.
-- Aprovar ou reprovar o comportamento do OCR.
-- Continuar a normalização de datas, números e tabelas após a aprovação da precisão.
-- Criar editor e exportação JSON.
-- Preparar Supabase somente após autorização explícita.
+- Imagem clara e simples.
+- Imagem com texto pequeno.
+- Imagem com tabela, formulário ou outra estrutura diferente.
+
+Os testes ainda não foram executados porque as três imagens representativas não foram fornecidas nesta etapa.
+
+## Normalizador — correções preparadas para a próxima execução
+
+Após os testes complementares, avaliar e corrigir:
+
+- reconstrução de títulos quebrados;
+- ordem de leitura vertical e horizontal;
+- linhas que atravessam duas colunas;
+- elementos próximos à divisão central;
+- classificação de título, descrição, etapa, lista, botão e selo;
+- qualidade técnica separada da qualidade semântica;
+- preenchimento de `campos_detectados`;
+- normalização posterior de datas, números e tabelas.
+
+## Restrições preservadas
+
+- Não promover o OCR para produção.
+- Não configurar Supabase.
+- Não concluir a LEA-100.
 
 ## Bloqueios
 
-Nenhum bloqueio estrutural. A aprovação funcional continua bloqueada até o reteste humano confirmar melhoria suficiente na precisão e na organização espacial.
+Nenhum bloqueio estrutural. A execução da matriz complementar depende do fornecimento das imagens de teste. A aprovação funcional completa permanece bloqueada até esses testes e a revisão do normalizador.
 
 ## Próxima etapa
 
-Executar o reteste no novo preview com a mesma imagem do primeiro diagnóstico e registrar a comparação antes de avançar.
+Receber as três imagens representativas, executar os testes complementares no preview e registrar uma comparação única antes de alterar o normalizador.
