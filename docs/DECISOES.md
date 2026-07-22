@@ -8,7 +8,7 @@ A fundação do MVP utiliza Next.js, React e TypeScript, com App Router.
 
 ## DEC-002 — Processamento e melhoria do OCR
 
-Status: Aprovada e implementada para reteste
+Status: Aprovada para testes complementares
 
 O OCR utiliza Tesseract.js 7 no navegador, com os idiomas português e inglês. A imagem permanece local e somente os recursos técnicos do mecanismo e dos idiomas são baixados durante a primeira execução.
 
@@ -25,7 +25,17 @@ Após o primeiro teste funcional, o usuário aprovou o diagnóstico de precisão
 - geração de texto filtrado e dados estruturados;
 - indicador de qualidade geral diferente da confiança global do OCR.
 
-A estratégia deve ser validada por reteste humano antes de ser considerada aprovada para produção.
+O reteste com a mesma imagem foi aprovado pelo usuário com os seguintes resultados principais:
+
+- confiança global do OCR: 90%;
+- confiança média das palavras: 95,2%;
+- qualidade geral calculada: 96,2%;
+- remoção dos ruídos externos pelo recorte: aprovada;
+- detecção de duas colunas: aprovada;
+- ordem de leitura e separação exata de blocos: ainda parciais;
+- estrutura semântica e campos detectados: ainda incompletos.
+
+A aprovação vale para o reteste da mesma imagem e não representa aprovação geral do OCR. A decisão final permanece condicionada aos testes com imagem clara, texto pequeno e tabela, formulário ou estrutura diferente.
 
 ## DEC-003 — Privacidade das imagens
 
@@ -43,4 +53,4 @@ A Vercel foi autorizada explicitamente em 2026-07-21. A fundação permanece pub
 
 Status: Aprovada
 
-GitHub mantém o estado técnico permanente e Linear acompanha a execução. A tarefa atual é a LEA-100, que não pode ser concluída antes do reteste, da aprovação dos critérios e da sincronização final.
+GitHub mantém o estado técnico permanente e Linear acompanha a execução. A tarefa atual é a LEA-100, que não pode ser concluída antes dos testes complementares, da correção do normalizador, da aprovação dos critérios e da sincronização final.
