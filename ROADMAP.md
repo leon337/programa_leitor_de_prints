@@ -34,7 +34,7 @@ Status: Em andamento
 - [x] Retestar com a mesma imagem do primeiro diagnóstico.
 - [x] Aprovar o resultado do reteste da mesma imagem.
 - [ ] Testar uma imagem clara e simples.
-- [ ] Testar uma imagem com texto pequeno.
+- [x] Testar uma imagem com texto pequeno — resultado `REPROVADO` e diagnóstico aprovado.
 - [ ] Testar uma imagem com tabela, formulário ou estrutura diferente.
 - [ ] Consolidar a comparação da matriz de testes.
 - [ ] Aprovar o comportamento geral do OCR.
@@ -53,8 +53,12 @@ Status: Iniciada parcialmente
 - [ ] Corrigir a ordem de leitura dos blocos.
 - [ ] Impedir linhas que atravessem duas colunas.
 - [ ] Tratar elementos próximos à divisão central.
-- [ ] Classificar título, descrição, etapa, lista, botão e selo.
-- [ ] Separar qualidade técnica e qualidade semântica.
+- [ ] Segmentar interfaces complexas em regiões independentes.
+- [ ] Executar OCR em múltiplas passagens para textos pequenos.
+- [ ] Medir cobertura do conteúdo além da confiança das palavras.
+- [ ] Corrigir a fórmula de proporção de palavras mantidas.
+- [ ] Classificar título, descrição, etapa, lista, botão, selo e campos de interface.
+- [ ] Separar qualidade técnica, qualidade semântica e cobertura.
 - [ ] Preencher `campos_detectados` de forma útil.
 - [ ] Normalizar datas e números.
 - [ ] Identificar tabelas quando possível.
