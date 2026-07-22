@@ -10,42 +10,52 @@
 
 ## Objetivo atual
 
-Criar a fundação do MVP capaz de receber imagens PNG/JPG, validar o arquivo e preparar a interface para extração e estruturação dos dados.
+Validar a fundação do MVP e iniciar a extração OCR local de imagens PNG/JPG no navegador.
 
 ## Concluído nesta etapa
 
-- Projeto registrado no Linear.
-- LEA-100 movida para Em andamento.
-- Branch oficial criada.
-- Estrutura inicial Next.js e TypeScript criada.
-- Interface inicial de seleção e pré-visualização da imagem criada.
-- Validação local de formato e limite de 10 MB criada.
-- Nenhuma imagem é enviada ou armazenada.
-- Projeto Vercel criado: `programa-leitor-de-prints`.
-- Dependências instaladas com sucesso no ambiente de build da Vercel.
-- Build de produção e validação TypeScript concluídos com sucesso.
-- Aplicação publicada e verificada com resposta HTTP 200.
+- `npm run lint` executado com sucesso no build da Vercel.
+- Build Next.js e validação TypeScript concluídos com sucesso.
+- Tesseract.js 7 integrado ao frontend.
+- OCR configurado para português e inglês.
+- Progresso e estado do processamento exibidos na interface.
+- Texto bruto e nível de confiança exibidos após a leitura.
+- Estrutura preliminar em JSON gerada com arquivo, texto, linhas e confiança.
+- Tratamento inicial de erro e imagem sem texto implementado.
+- Workflow de CI criado para executar lint e build em alterações futuras.
+- A imagem permanece local no navegador e não é persistida.
 
-## Publicação atual
+## Infraestrutura
+
+### Produção atual
 
 - URL: `https://programa-leitor-de-prints.vercel.app`
-- Projeto Vercel: `prj_Q6t9cdoaAoeHL5ea0Onk4sHqif7n`
 - Deployment: `dpl_7TUVwu6GdSvSsg8MSF6wtFwfQcTn`
+- Conteúdo: fundação anterior, sem OCR.
+
+### Preview com OCR
+
+- URL: `https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app`
+- Deployment: `dpl_E9ddHmDoaNVB8GwEj3R79y5ojvsj`
 - Estado: `READY`
-- Observação: a solicitação foi enviada como preview, mas a Vercel classificou o primeiro deployment do novo projeto como produção e associou o domínio principal.
+- Resposta HTTP: `200`
+- Lint: aprovado
+- Build: aprovado
+- TypeScript: aprovado
 
 ## Pendente
 
-- Executar `npm run lint` separadamente.
-- Integrar OCR.
-- Criar normalizador de resultados.
+- Executar teste funcional do OCR no navegador com imagens reais.
+- Avaliar precisão em prints claros, escuros e com textos pequenos.
+- Criar normalizador de campos, datas, números e tabelas.
 - Criar editor e exportação JSON.
-- Preparar Supabase somente após autorização.
+- Promover a versão OCR para produção somente após aprovação.
+- Preparar Supabase somente após autorização explícita.
 
 ## Bloqueios
 
-Nenhum bloqueio estrutural registrado. O lint permanece pendente, mas o build e a publicação foram concluídos com sucesso.
+Nenhum bloqueio estrutural. A precisão do OCR depende da qualidade da imagem e ainda precisa de validação funcional humana.
 
 ## Próxima etapa
 
-Executar o lint e iniciar a integração do OCR dentro da LEA-100.
+Testar o preview OCR com prints reais e, após aprovação, iniciar o normalizador de dados dentro da LEA-100.
