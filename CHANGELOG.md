@@ -2,7 +2,47 @@
 
 ## [Não publicado]
 
-### Adicionado
+### Versão 0.3.0 — OCR aprimorado para reteste
+
+#### Adicionado
+
+- Recorte local por margens superior, direita, inferior e esquerda.
+- Presets de recorte para tela inteira e conteúdo central.
+- Prévia comparativa da imagem original e pré-processada.
+- Ampliação automática antes do OCR.
+- Processamento em escala de cinza com contraste ajustável.
+- Redução leve de ruído e inversão automática para fundos escuros.
+- Modo de alto contraste com limiarização automática.
+- Filtro configurável por confiança mínima das palavras.
+- Filtragem de símbolos sem conteúdo significativo.
+- Organização espacial por linhas, colunas e blocos.
+- Modos automático, uma coluna e duas colunas.
+- Texto filtrado separado do texto bruto.
+- Detecção inicial de títulos, cabeçalhos e campos chave-valor.
+- Coordenadas percentuais dos blocos no JSON.
+- Indicador de qualidade geral com confiança média, palavras mantidas e itens descartados.
+- Novo preview: `https://programa-leitor-de-prints-opzna7eml-predix-ai-br.vercel.app`.
+
+#### Validado
+
+- `npm run lint`: aprovado na Vercel.
+- Compilação Next.js: aprovada.
+- Verificação TypeScript: aprovada.
+- Geração estática: aprovada.
+- Deployment `dpl_pSPq8Sv6n4ZC6QcBjt8qFLHKwEhj`: `READY`.
+- Resposta HTTP do novo preview: `200`.
+
+#### Diagnóstico registrado
+
+- Primeiro teste real: execução funcional aprovada.
+- Precisão geral: parcial.
+- Confiança média observada: aproximadamente 75%.
+- Falhas registradas: ruído externo, acentos, mistura de colunas e ausência de estrutura semântica final.
+- Diagnóstico e correções aprovados pelo usuário.
+
+### Versão 0.2.0 — Integração OCR inicial
+
+#### Adicionado
 
 - Fundação do projeto Next.js com TypeScript.
 - Interface para seleção e pré-visualização de PNG/JPG.
@@ -16,25 +56,20 @@
 - Tratamento inicial de falhas e imagens sem texto.
 - Workflow de CI para lint e build.
 - Projeto `programa-leitor-de-prints` na Vercel.
-- Preview OCR disponível em `https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app`.
-
-### Validado
-
-- `npm run lint` concluído com sucesso no ambiente da Vercel.
-- Compilação Next.js concluída com sucesso.
-- Verificação TypeScript concluída com sucesso.
-- Geração das páginas estáticas concluída.
-- Preview criado com estado `READY` e resposta HTTP 200.
+- Preview OCR inicial em `https://programa-leitor-de-prints-korzf10t8-predix-ai-br.vercel.app`.
 
 ### Segurança e privacidade
 
-- A imagem permanece no navegador e não é enviada nem armazenada.
+- A imagem, o recorte e o OCR permanecem no navegador.
+- Nenhum print é enviado nem armazenado.
 - O Supabase permanece não configurado.
-- A nova versão permanece em preview; a produção não foi substituída.
+- A versão 0.3.0 permanece em preview; a produção não foi substituída.
 
 ### Pendente
 
-- Teste funcional do OCR com imagens reais.
-- Normalização de campos, datas, números e tabelas.
+- Reteste funcional com a mesma imagem do primeiro diagnóstico.
+- Testes com imagens claras, escuras e textos pequenos.
+- Aprovação do comportamento do OCR.
+- Normalização de datas, números e tabelas.
 - Exportação JSON.
-- Aprovação antes da promoção para produção.
+- Autorização explícita antes de qualquer promoção para produção.
