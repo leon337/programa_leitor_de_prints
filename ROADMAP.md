@@ -2,7 +2,7 @@
 
 ## Fase 1 — Fundação do MVP
 
-Status: Em andamento
+Status: Concluída
 
 - [x] Criar repositório e projeto no Linear.
 - [x] Criar branch da LEA-100.
@@ -10,22 +10,30 @@ Status: Em andamento
 - [x] Criar interface de upload e pré-visualização.
 - [x] Validar PNG/JPG e limite de tamanho.
 - [x] Validar instalação das dependências na Vercel.
-- [x] Validar TypeScript e build de produção na Vercel.
-- [ ] Executar `npm run lint` separadamente.
+- [x] Validar TypeScript e build na Vercel.
+- [x] Executar `npm run lint`.
 
 ## Fase 2 — Extração OCR
 
-- [ ] Integrar mecanismo de OCR.
-- [ ] Exibir texto bruto.
-- [ ] Exibir confiança da leitura quando disponível.
-- [ ] Tratar erros e imagens sem texto.
+Status: Em andamento
+
+- [x] Integrar Tesseract.js no navegador.
+- [x] Configurar português e inglês.
+- [x] Exibir progresso do processamento.
+- [x] Exibir texto bruto.
+- [x] Exibir confiança da leitura quando disponível.
+- [x] Tratar falhas e imagens sem texto.
+- [ ] Testar a precisão com imagens reais.
+- [ ] Aprovar o comportamento do OCR.
 
 ## Fase 3 — Estruturação
 
-- [ ] Identificar linhas, blocos, campos e valores.
+- [x] Gerar estrutura preliminar com texto e linhas.
+- [ ] Identificar blocos, campos e valores.
 - [ ] Normalizar datas e números.
-- [ ] Produzir JSON estruturado.
-- [ ] Permitir revisão manual.
+- [ ] Identificar tabelas quando possível.
+- [ ] Produzir JSON estruturado final.
+- [ ] Permitir revisão manual dos campos.
 
 ## Fase 4 — Exportação e persistência
 
@@ -35,8 +43,9 @@ Status: Em andamento
 
 ## Fase 5 — Publicação
 
-- [x] Autorizar e criar o projeto na Vercel.
-- [x] Publicar a fundação e obter estado `READY`.
-- [x] Verificar a aplicação publicada com HTTP 200.
+- [x] Criar o projeto na Vercel.
+- [x] Publicar a fundação em produção.
+- [x] Criar preview isolado com OCR.
+- [x] Validar lint, TypeScript, build e HTTP 200 no preview.
 - [ ] Executar testes de aceitação completos.
-- [ ] Preparar versão demonstrável do MVP com OCR.
+- [ ] Promover o OCR para produção após aprovação.
