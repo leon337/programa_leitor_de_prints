@@ -2,6 +2,12 @@
 
 Aplicação para receber uma captura de tela, extrair o conteúdo visível e transformar as informações em dados estruturados revisáveis.
 
+## Aplicação publicada
+
+- URL: https://programa-leitor-de-prints.vercel.app
+- Estado do deployment: `READY`
+- Versão atual: fundação do MVP, ainda sem OCR
+
 ## Estado atual
 
 - Item em andamento: `LEA-100`
@@ -9,9 +15,12 @@ Aplicação para receber uma captura de tela, extrair o conteúdo visível e tra
 - Interface de upload: criada
 - Validação PNG/JPG: criada
 - Pré-visualização local: criada
+- Build de produção: validado na Vercel
+- TypeScript: validado na Vercel
+- Lint separado: pendente
 - OCR: pendente
 - Supabase: não configurado
-- Vercel: não configurada
+- Vercel: configurada e publicada
 
 ## Objetivo do MVP
 
@@ -40,7 +49,7 @@ Revisão pelo usuário
 ## Arquitetura inicial
 
 - Frontend: Next.js + TypeScript
-- Hospedagem futura: Vercel
+- Hospedagem: Vercel
 - Banco e armazenamento futuros: Supabase
 - OCR inicial: mecanismo configurável
 - Estruturação: regras locais no MVP; IA como evolução
